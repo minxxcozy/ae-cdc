@@ -4,7 +4,7 @@ import json, os
 app = Flask(__name__)
 
 # 절대경로로 고정
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # server/ 상위 폴더
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))   # server/ 상위 폴더
 CHUNK_DIR = os.path.join(BASE_DIR, "data", "chunks")
 MANIFEST_PATH = os.path.join(BASE_DIR, "data", "manifest_ae.json")
 

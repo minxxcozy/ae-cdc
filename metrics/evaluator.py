@@ -1,5 +1,6 @@
 import os, json, statistics
 
+# 전체 메트릭 저장
 def log_metrics(chunk_count, total_bytes, start_time, end_time, attempts, errors):
     metrics = {
         "chunk_count": chunk_count,
@@ -15,8 +16,8 @@ def log_metrics(chunk_count, total_bytes, start_time, end_time, attempts, errors
     print(json.dumps(metrics, indent=2))
 
 
+# 청킹 결과 저장
 def log_chunk_metrics(count, total_bytes, start_time, end_time):
-    """청킹 결과 저장"""
     metrics = {
         "chunk_count": count,
         "total_bytes": total_bytes,
@@ -29,8 +30,8 @@ def log_chunk_metrics(count, total_bytes, start_time, end_time):
     print(json.dumps(metrics, indent=2))
 
 
+# 복원 결과 저장
 def log_restore_metrics(count, total_bytes, start_time, end_time):
-    """복원 결과 저장"""
     metrics = {
         "restored_chunks": count,
         "total_bytes": total_bytes,

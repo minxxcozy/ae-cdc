@@ -1,7 +1,3 @@
-"""
-Asymmetric Extremum Content-Defined Chunking (AE-CDC)
-비대칭 윈도우 기반으로 파일을 가변 청크로 분할
-"""
 from collections import deque
 from typing import List, Tuple
 

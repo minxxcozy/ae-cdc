@@ -1,4 +1,3 @@
-# scripts/chunk_ae.py
 import os, time, json, hashlib
 from chunkers.ae_cdc import ae_cdc
 from metrics.evaluator import log_chunk_metrics
@@ -9,8 +8,8 @@ MANIFEST_PATH = "data/manifest_ae.json"     # 매니페스트 출력 경로
 
 os.makedirs(CHUNK_DIR, exist_ok=True)
 
+# SHA-256 해시 계산 함수
 def sha256_bytes(data: bytes) -> str:
-    """SHA-256 해시 계산"""
     return hashlib.sha256(data).hexdigest()
 
 def main():
@@ -20,7 +19,7 @@ def main():
 
     print(f"[*] Starting AE-CDC chunking ({len(data)/1024/1024:.2f} MB)")
     t0 = time.time()
-    chunks = ae_cdc(data)  # AE-CDC 청킹 수행
+    chunks = ae_cdc(data)   # AE-CDC 청킹 수행
     t1 = time.time()
 
     print(f"[+] Chunking completed in {t1 - t0:.4f} s")
