@@ -17,6 +17,7 @@ cd ae-cdc
 python -m venv .venv
 source .venv/bin/activate
 ```
+* 모든 작업은 **반드시 가상환경**에서 진행해 주세요.
 
 ### 📦 의존성 설치
 ```bash
@@ -44,8 +45,8 @@ tar -xf ubuntu.tar -C data/ubuntu-oci
 ```
 
 ## 📚 Chunk 대상 파일 지정 
-* 아래 명령으로 실제 chunking을 수행할 tar 파일(rootfs.tar)을 지정합니다.
-* 보통 data/ubuntu-oci/blobs/sha256/... 안의 가장 큰 파일이 rootfs입니다.
+* 아래 명령으로 실제 chunking을 수행할 tar 파일 (`rootfs.tar`)을 지정합니다.
+* 보통 `data/ubuntu-oci/blobs/sha256/...` 안의 가장 큰 파일이 `rootfs`입니다.
 
 ### ❗ 예시
 ```bash
@@ -75,13 +76,13 @@ python3 -m scripts.chunk_ae
 * `data/chunks/` 디렉토리에 part-00000, part-00001 … 형태로 저장
 * `data/manifest_ae.json` 에 매니페스트 기록
 
-## 🌐 OTA 서버 실행
+## 🌐 OTA 서버 실행 (터미널 1)
 ```bash
 python3 -m server.server
 ```
 * `Running on http://127.0.0.1:8000`이 출력되면, 클라이언트가 해당 서버로부터 청크 파일을 다운로드할 수 있습니다.
 
-## 📡 클라이언트 다운로드 & 네트워크 실패 실험
+## 📡 클라이언트 다운로드 & 네트워크 실패 실험 (터미널 2)
 ```bash
 python3 -m client.run_bench
 ```
@@ -103,7 +104,7 @@ python3 -m client.run_bench
 }
 ```
 
-## 🔁 청크 복원 테스트
+## 🔁 청크 복원 테스트 (터미널 3)
 다운로드가 종료되면, 아래 명령으로 복원할 수 있습니다.
 ```bash
 python3 restore.py
