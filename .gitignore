@@ -24,7 +24,7 @@ reassembled_oci/
 merged_rootfs/
 _tmp_*/                 
 *_temp*/  
-             
+
 
 # 실험용 데이터/로그/결과
 data/chunks/
@@ -55,16 +55,7 @@ metrics/tmp_*
 *.ipynb
 
 
-# Test Artifacts
-TEST*/
-test*/
-tests/
-*.out
-*.tmp
-*.bak
-
-
-# 🚀 Podman / OCI 관련 임시 파일
+# Podman / OCI 관련 임시 파일
 *.tar.gz
 *.tar.bz2
 *.tar.xz
