@@ -2,7 +2,7 @@
 > **AE-CDC** 알고리즘을 이용해 Ubuntu 컨테이너 이미지를 **가변 청크 단위로 분할 (Chunking)** 하고,  
 > 네트워크 오류나 중단 상황을 가정하여 **전송 및 복원 (Download / Restore)** 과정을 실험하는 프로젝트입니다.
 
-
+# Test 1 ( vs Static Chunking)
 
 ## ⚙️ 환경 세팅
 
@@ -116,3 +116,70 @@ python3 restore.py
 [+] Restore completed in 0.0534 s (23.05 MB total)
 ```
 * `data/reconstructed_*.bin` 파일이 생성되며, 원본 rootfs.tar와 동일한 내용으로 복원됩니다.  
+# Test 2 ( vs FastCDC)
+
+## ⚙️ 환경 세팅
+
+### 🧱 레포지토리 클론
+```bash
+git clone https://github.com/minxxcozy/ae-cdc.git
+cd ae-cdc
+```
+
+### 🌎 가상환경 생성 및 활성화
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+* 모든 작업은 **반드시 가상환경**에서 진행해 주세요.
+
+### 📦 의존성 설치
+```bash
+pip install -r requirements.txt
+```
+
+## 🗂️ Ubuntu 이미지 준비
+* **Podman**을 사용해 Ubuntu 22.04 이미지를 다운로드한 뒤,
+* 이를 **tar 파일로 추출**하여 AE-CDC의 입력으로 사용합니다.
+
+### 1️⃣ Ubuntu 22.04 이미지 pull
+```bash
+cd src/test2
+podman pull ubuntu:22.04
+```
+
+### 2️⃣ oci-archive 포맷으로 저장
+```bash
+podman save --format oci-archive -o ubuntu.tar ubuntu:22.04
+```
+
+### 3️⃣ 압축 해제
+```bash
+mkdir -p src/test2/data/ubuntu-oci
+tar -xf ubuntu.tar -C src/test2/data/ubuntu-oci
+```
+
+## 🔨 파이프라인 성능 테스트
+### 1️⃣ 최소 로그 모드
+```bash
+python3 container_dedup.py
+```
+
+### 2️⃣ 성능 지표 포함 출력
+```bash
+python3 container_dedup_metrics.py
+```
+
+### ✅ 실행 결과 예시
+```bash
+=== AE-CDC 기반 OCI 재조립 파이프라인 시작 ===
+--- [1/6] AE-CDC 분할 ---
+  총 청크: 484 (고유 생성 484)
+  평균 청크 크기: 65081.2 B, P95: 66062 B, 최소:30 B, 최대:66584 B
+  입력 바이트: 30.04 MB
+  생성 바이트(신규 청크): 30.04 MB
+  분할 시간: 11.128 s, 처리량: 2.70 MB/s
+  
+--- [2/6] 파일 재조립 ---
+...
+```
