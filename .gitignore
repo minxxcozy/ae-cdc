@@ -1,0 +1,31 @@
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+
+# Experimental Data
+ubuntu.tar
+data/ubuntu-oci/
+data/ubuntu.tar
+data/rootfs.tar
+data/chunks/
+data/received/
+data/reconstructed_*
+data/manifest_ae.json
+
+
+# Logs / Outputs
+*.log
+metrics/*.json
+
+
+# IDE / Editor
+.vscode/
+.idea/
+
+
+# Jupyter / Temp
+.ipynb_checkpoints/
+*.ipynb
