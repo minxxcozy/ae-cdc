@@ -1,31 +1,71 @@
-# python
+# Python 기본
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 .venv/
+.env/
+*.egg-info/
+build/
+dist/
 
 
-# Experimental Data
+# 원본 Ubuntu 이미지 및 추출물
 ubuntu.tar
-data/ubuntu-oci/
 data/ubuntu.tar
+data/ubuntu-oci/
 data/rootfs.tar
+
+
+# AE-CDC / FastCDC 중간 산출물
+chunks_storage/
+manifests/
+reassembled_oci/
+merged_rootfs/
+_tmp_*/                 
+*_temp*/  
+             
+
+# 실험용 데이터/로그/결과
 data/chunks/
 data/received/
 data/reconstructed_*
 data/manifest_ae.json
-
-
-# Logs / Outputs
 *.log
+*.json
+*.csv
+*.tsv
+
+
+# Metrics
 metrics/*.json
+metrics/*.csv
+metrics/tmp_*
 
 
-# IDE / Editor
+# 개발 환경 / IDE 설정
 .vscode/
 .idea/
+*.swp
+*.swo
 
 
-# Jupyter / Temp
+# Jupyter / 노트북
 .ipynb_checkpoints/
 *.ipynb
+
+
+# Test Artifacts
+TEST*/
+test*/
+tests/
+*.out
+*.tmp
+*.bak
+
+
+# 🚀 Podman / OCI 관련 임시 파일
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+oci-archive/
