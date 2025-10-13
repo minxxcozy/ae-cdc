@@ -17,7 +17,7 @@ IMAGE_NAME = os.environ.get("IMAGE_NAME", "ubuntu-aecdc:latest")
 AVG = 64 * 1024
 MIN = AVG // 2
 MAX = AVG * 2
-WIN = 64  # AE-CDC 좌측 창
+WIN = 256  # AE-CDC 좌측 창
 
 # ------------------------- 유틸 -------------------------
 def ensure_dirs():
